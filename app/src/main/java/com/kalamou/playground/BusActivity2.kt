@@ -22,4 +22,8 @@ class BusActivity2: AppCompatActivity() {
         EventBus.getDefault().post(CartEvent("new Cart Item"))
     }
 
+    fun removeItemToCart(view: View?){
+        EventBus.getDefault().removeStickyEvent("a Cart Item has removed")
+    }
+
 }

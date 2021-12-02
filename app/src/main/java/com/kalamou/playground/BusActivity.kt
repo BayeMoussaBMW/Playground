@@ -28,6 +28,10 @@ class BusActivity : AppCompatActivity() {
         binding.butAdd.setOnClickListener {
             startActivity(Intent(this, BusActivity2::class.java))
         }
+
+        binding.butRemove.setOnClickListener {
+
+        }
     }
 
 
