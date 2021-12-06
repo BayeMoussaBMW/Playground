@@ -4,13 +4,16 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.kalamou.playground.databinding.ActivityMainBinding
+import com.kalamou.playground.devialet.Downloader
+import com.kalamou.playground.devialet.Listener
 
-class MainActivity : AppCompatActivity() {
-
+class MainActivity : AppCompatActivity(), Listener {
+    private val textView: TextView by lazy { findViewById(R.id.txt_v) }
     lateinit var binding: ActivityMainBinding
 
     companion object{
@@ -35,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btBus.setOnClickListener {
-            open()
+            //open()
+            Downloader.download(this)
         }
 
         binding.btCancel.setOnClickListener {
@@ -50,5 +54,13 @@ class MainActivity : AppCompatActivity() {
 
     fun open(){
         startActivity(Intent(this, BusActivity::class.java))
+    }
+
+    override fun onComplete() {
+        textView.text = "Success"
+    }
+
+    override fun onError() {
+        textView.text = "Error"
     }
 }
